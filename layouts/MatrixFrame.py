@@ -14,8 +14,8 @@ class MatrixFrame(ttk.Frame):
         self._enter_matrix = None
 
         self._radio_buttons = [
-            ("Losowe wartości", "random", lambda: self._change_matrix_frame(EnterMatrixTypes.RANDOM)),
-            ("Wprowadź macierz", "enter", lambda: self._change_matrix_frame(EnterMatrixTypes.ENTER))
+            ("Random values", "random", lambda: self._change_matrix_frame(EnterMatrixTypes.RANDOM)),
+            ("Enter the matrix", "enter", lambda: self._change_matrix_frame(EnterMatrixTypes.ENTER))
         ]
         self._radio_field = StringVar()
         self._radio_field.set("random")

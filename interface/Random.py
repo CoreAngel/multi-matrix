@@ -21,27 +21,27 @@ class RandomInterface(MatrixInterface):
             self._second_column = int(second_column)
             self._second_row = int(second_row)
         except ValueError:
-            raise ErrorValue("Podane wielkości macierzy są niepoprawne")
+            raise ErrorValue("Incorrect size of the matrix!")
         except Exception:
-            raise Exception("Wystapil nieznany blad")
+            raise Exception("Unknown error!")
 
         if self._first_column < 1 or self._first_row < 1 or self._second_column < 1 or self._second_row < 1:
-            raise ErrorValue("Wielkosc macierzy nie moze byc mniejsza niz 1")
+            raise ErrorValue("Incorrect size of the matrix!")
 
         if self._first_column != self._second_row:
-            raise ErrorValue("Ilosc kolumn w 1 macierzy musi byc rowna ilosci wierszy w 2")
+            raise ErrorValue("Number of columns in 1 matrix must be equal to rows in 2!")
 
     def check_interval(self, interval_from, interval_to):
         try:
             self._interval_from = float(interval_from)
             self._interval_to = float(interval_to)
         except ValueError:
-            raise ErrorValue("Podane wartosci sa niepoprawne")
+            raise ErrorValue("Incorrect values ​​provided!")
         except Exception:
-            raise Exception("Wystapil nieznany blad")
+            raise Exception("Unknown error!")
 
         if self._interval_from > self._interval_to:
-            raise ErrorValue("Podano niepoprawny przedział")
+            raise ErrorValue("Incorrect range ​​provided!")
 
         if self._type_of_numbers == LootsTypes.INTEGER:
             self._interval_from = ceil(self._interval_from)

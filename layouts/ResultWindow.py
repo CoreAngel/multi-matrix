@@ -101,11 +101,11 @@ class ResultWindow:
     def _get_size(self, matrix):
         self._rows = len(matrix)
         if self._rows <= 0:
-            raise ValueError("Nieprawidlowa wialkosc macierzy!")
+            raise ValueError("Incorrect size of the matrix!")
 
         self._columns = len(matrix[0])
         if self._columns <= 0:
-            raise ValueError("Nieprawidlowa wialkosc macierzy!")
+            raise ValueError("Incorrect size of the matrix!")
 
     def get_root(self):
         return self._root

@@ -17,7 +17,7 @@ class Window:
 
         self._root = Tk()
         self._root.geometry("400x550")
-        self._root.title("Kalkulator mnozenia macierzy")
+        self._root.title("Matrix multpilication calculator")
         self._root.iconbitmap('resources/icon.ico')
         self._root.resizable(width=False, height=False)
         self._root.grid_columnconfigure(0, weight=1)

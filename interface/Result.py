@@ -61,7 +61,7 @@ class ResultInterface:
     def get_calculation_status(self):
         return self._calculation
 
-    def reset_matrixs(self):
+    def reset_matrices(self):
         self._matrix_one = None
         self._matrix_two = None
         self._result_py = None

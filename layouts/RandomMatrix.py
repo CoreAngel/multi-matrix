@@ -23,7 +23,7 @@ class RandomMatrix(ttk.Frame):
         self._interval_to = None
 
         self._var_button_text = StringVar()
-        self._var_button_text.set("Uruchom obliczenia")
+        self._var_button_text.set("Run the calculation")
         self._var_button = None
 
         self['relief'] = 'ridge'
@@ -34,21 +34,21 @@ class RandomMatrix(ttk.Frame):
         self.grid_columnconfigure(1, weight=1)
 
         self._first_matrix = StringVar()
-        Label(self, text="Wymiary macierzy 1 (W K)", height=2).grid(column=0, row=0)
+        Label(self, text="First matrix size (R C)", height=2).grid(column=0, row=0)
         Entry(self, textvariable=self._first_matrix).grid(column=1, row=0)
 
         self._second_matrix = StringVar()
-        Label(self, text="Wymiary macierzy 2 (W K)", height=2).grid(column=0, row=1)
+        Label(self, text="Second matrix size (R C)", height=2).grid(column=0, row=1)
         Entry(self, textvariable=self._second_matrix).grid(column=1, row=1)
 
         self._iterations = StringVar()
         self._iterations.set(1)
-        Label(self, text="Liczba powtórzeń", height=2).grid(column=0, row=2)
+        Label(self, text="Number of repetitions", height=2).grid(column=0, row=2)
         Entry(self, textvariable=self._iterations).grid(column=1, row=2)
 
         self._radio_buttons = [
-            ("Liczby rzeczywiste", LootsTypes.REAL),
-            ("Liczby całkowite", LootsTypes.INTEGER)
+            ("Real numbers", LootsTypes.REAL),
+            ("Integers", LootsTypes.INTEGER)
         ]
         self._type_of_numbers = StringVar()
         self._type_of_numbers.set(LootsTypes.REAL)
@@ -56,7 +56,7 @@ class RandomMatrix(ttk.Frame):
         for index, (text, mode) in enumerate(self._radio_buttons):
             Radiobutton(self, text=text, variable=self._type_of_numbers, value=mode).grid(column=index, row=3)
 
-        Label(self, text="Przedział od - do", height=2).grid(column=0, row=4, columnspan=2, sticky=W+E)
+        Label(self, text="Range from - to", height=2).grid(column=0, row=4, columnspan=2, sticky=W+E)
 
         self._interval_from = StringVar()
         self._interval_from.set(0)
@@ -108,9 +108,9 @@ class RandomMatrix(ttk.Frame):
 
     def change_start_buttons(self, state):
         if state == CalculationStates.RUN:
-            self._var_button_text.set("Obliczam...")
+            self._var_button_text.set("Calculating...")
             self._var_button.config(state="disabled")
         elif state == CalculationStates.FINISH:
-            self._var_button_text.set("Uruchom obliczenia")
+            self._var_button_text.set("Run the calculation")
             self._var_button.config(state="normal")
 

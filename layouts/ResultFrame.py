@@ -38,7 +38,7 @@ class ResultFrame(ttk.Frame):
         frame.grid_rowconfigure(1, weight=1)
         frame.grid_rowconfigure(2, weight=1)
 
-        Label(frame, text="Czasy obliczeń").grid(row=0, columnspan=3)
+        Label(frame, text="Calculation times").grid(row=0, columnspan=3)
 
         self._var_time_python = StringVar()
         self._var_time_python.set("-")
@@ -52,7 +52,7 @@ class ResultFrame(ttk.Frame):
 
         self._var_time_conversion = StringVar()
         self._var_time_conversion.set("-")
-        Label(frame, text="Konwersja").grid(row=1, column=2)
+        Label(frame, text="Conversion").grid(row=1, column=2)
         Label(frame, textvariable=self._var_time_conversion).grid(row=2, column=2)
 
     def _create_result_frame(self):
@@ -65,45 +65,45 @@ class ResultFrame(ttk.Frame):
         frame.grid_rowconfigure(0, weight=1)
         frame.grid_rowconfigure(1, weight=1)
 
-        Label(frame, text="Macierze").grid(row=0, columnspan=4)
+        Label(frame, text="Matrices").grid(row=0, columnspan=4)
 
-        Button(frame, text="Macierz 1", width=10, command=lambda: self._open_result_window(ResultMatrixTypes.FIRST)).grid(row=1, column=0)
+        Button(frame, text="Matrix 1", width=10, command=lambda: self._open_result_window(ResultMatrixTypes.FIRST)).grid(row=1, column=0)
 
-        Button(frame, text="Macierz 2", width=10, command=lambda: self._open_result_window(ResultMatrixTypes.SECOND)).grid(row=1, column=1)
+        Button(frame, text="Matrix 2", width=10, command=lambda: self._open_result_window(ResultMatrixTypes.SECOND)).grid(row=1, column=1)
 
-        Button(frame, text="Wynik Py", width=10, command=lambda: self._open_result_window(ResultMatrixTypes.RESULT_PY)).grid(row=1, column=2)
+        Button(frame, text="Result Py", width=10, command=lambda: self._open_result_window(ResultMatrixTypes.RESULT_PY)).grid(row=1, column=2)
 
-        Button(frame, text="Wynik Cpp", width=10, command=lambda: self._open_result_window(ResultMatrixTypes.RESULT_CPP)).grid(row=1, column=3)
+        Button(frame, text="Result Cpp", width=10, command=lambda: self._open_result_window(ResultMatrixTypes.RESULT_CPP)).grid(row=1, column=3)
 
     def _open_result_window(self, matrix_type):
         matrix = self._parent.get_results_interface().get_matrix(matrix_type)
         if matrix is None:
-            self._parent.get_info_frame().set_info("Macierz jest pusta", InfoTypes.INFO)
+            self._parent.get_info_frame().set_info("The matrix is ​​empty", InfoTypes.INFO)
             return
 
         if len(matrix) * len(matrix[0]) > 2500:
-            self._parent.get_info_frame().set_info("Macierz jest zbyt duza aby ja wyswietlic", InfoTypes.INFO)
+            self._parent.get_info_frame().set_info("The matrix is ​​too large to display it", InfoTypes.INFO)
             return
 
         self._parent.get_info_frame().hide_frame()
 
         if matrix_type == ResultMatrixTypes.FIRST:
-            title = "Macierz pierwsza"
+            title = "First matrix"
             self.close_result_window(ResultMatrixTypes.FIRST)
             self._window_matrix_one = ResultWindow(title, matrix)
             self._window_matrix_one.run()
         elif matrix_type == ResultMatrixTypes.SECOND:
-            title = "Macierz druga"
+            title = "Second matrix"
             self.close_result_window(ResultMatrixTypes.SECOND)
             self._window_matrix_two = ResultWindow(title, matrix)
             self._window_matrix_two.run()
         elif matrix_type == ResultMatrixTypes.RESULT_PY:
-            title = "Macierz wynikowa python"
+            title = "Result matrix python"
             self.close_result_window(ResultMatrixTypes.RESULT_PY)
             self._window_result_py = ResultWindow(title, matrix)
             self._window_result_py.run()
         elif matrix_type == ResultMatrixTypes.RESULT_CPP:
-            title = "Macierz wynikowa C++"
+            title = "Result matrix C++"
             self.close_result_window(ResultMatrixTypes.RESULT_CPP)
             self._window_result_cpp = ResultWindow(title, matrix)
             self._window_result_cpp.run()
@@ -124,8 +124,8 @@ class ResultFrame(ttk.Frame):
         elif time_type == ResultTimeTypes.CONVERSION:
             self._var_time_conversion.set(time + " " + unit)
 
-    def reset_matrixs(self):
-        self._parent.get_results_interface().reset_matrixs()
+    def reset_matrices(self):
+        self._parent.get_results_interface().reset_matrices()
 
     def reset_times(self):
         self._var_time_python.set("-")

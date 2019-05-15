@@ -39,12 +39,12 @@ class EnterMatrix(ttk.Frame):
         self._text_field.grid(row=1, column=0, columnspan=2, sticky=W+E)
 
         self._var_iterations.set(1)
-        Label(self, text="Liczba powtórzeń", height=2).grid(column=0, row=2)
+        Label(self, text="Number of repetitions", height=2).grid(column=0, row=2)
         Entry(self, textvariable=self._var_iterations).grid(column=1, row=2)
 
         self._var_button = Button(self, textvariable=self._var_button_text, command=self._next_state)
         self._var_button.grid(row=3, column=0, pady=10)
-        Button(self, text="Resetuj", command=self._reset).grid(row=3, column=1, pady=10)
+        Button(self, text="Reset", command=self._reset).grid(row=3, column=1, pady=10)
 
         self._change_state(EnterStates.FIRST)
         self._update_texts()
@@ -52,7 +52,7 @@ class EnterMatrix(ttk.Frame):
     def _next_state(self):
         try:
             if self._state == EnterStates.FIRST:
-                self._parent.get_result_frame().reset_matrixs()
+                self._parent.get_result_frame().reset_matrices()
                 matrix_one = self._enter_interface.create_matrix(self._text_field.get(1.0, END), EnterStates.FIRST)
                 self._parent.get_results_interface().set_matrix(matrix_one, ResultMatrixTypes.FIRST)
                 self._change_state(EnterStates.SECOND)
@@ -82,11 +82,11 @@ class EnterMatrix(ttk.Frame):
 
     def _update_texts(self):
         if self._state == EnterStates.FIRST:
-            self._var_label_text.set("Podaj pierwsza macierz")
-            self._var_button_text.set("Zatwierdz macierz")
+            self._var_label_text.set("Provide the first matrix")
+            self._var_button_text.set("Submit the matrix")
         elif self._state == EnterStates.SECOND:
-            self._var_label_text.set("Podaj druga macierz")
-            self._var_button_text.set("Uruchom obliczenia")
+            self._var_label_text.set("Provide the second matrix")
+            self._var_button_text.set("Run the calculation")
 
     def _thread_calculate(self):
         result_interface = self._parent.get_results_interface()
@@ -115,9 +115,9 @@ class EnterMatrix(ttk.Frame):
 
     def change_start_buttons(self, state):
         if state == CalculationStates.RUN:
-            self._var_button_text.set("Obliczam...")
+            self._var_button_text.set("Calculating...")
             self._var_button.config(state="disabled")
         elif state == CalculationStates.FINISH:
-            self._var_button_text.set("Zatwierdz macierz")
+            self._var_button_text.set("Submit the matrix")
             self._var_button.config(state="normal")
 

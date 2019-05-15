@@ -34,12 +34,12 @@ class MatrixInterface:
         try:
             self._iterations = int(iterations)
         except ValueError:
-            raise ErrorValue("Podana ilosc iteracji jest niepoprawna")
+            raise ErrorValue("The number of iterations is incorrect")
         except Exception:
-            raise ErrorValue("Wystapil nieznany blad")
+            raise ErrorValue("Unknown error!")
 
         if self._iterations < 1:
-            raise ErrorValue("Ilosc iteracji nie moze byc mniejsza niz 1")
+            raise ErrorValue("The number of iterations can not be less than 1!")
 
     def calculate(self):
         multi_python = MultiplicationMatrixPython(self._matrix_one, self._matrix_two, self._iterations, self._type_of_numbers)
